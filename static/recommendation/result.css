@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab button {
+    background-color: #333;
+    color: white;
+    padding: 14px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab button:hover {
+    background-color: #555;
+}
+
+.tab button.active {
+    background-color: #0073e6;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+}
+
+.playlist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.playlist-card {
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 300px;
+    padding: 15px;
+    text-align: left;
+    transition: transform 0.2s;
+    overflow: hidden;
+}
+
+.playlist-card:hover {
+    transform: scale(1.05);
+}
+
+.playlist-card strong {
+    font-size: 1.2em;
+    color: #333;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-card a {
+    text-decoration: none;
+    color: #0073e6;
+    font-weight: bold;
+}
+
+.playlist-card em {
+    color: #777;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-card p, .playlist-card a {
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+iframe {
+    border-radius: 8px;
+    margin-top: 10px;
+}

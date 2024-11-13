@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Playlist Generator</title>
+    <link rel="stylesheet" href="{% static 'recommendation/styles.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>From Scenery to Perfect Playlists</h1>
+        <form action="/" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            {% csrf_token %}
+            <input type="file" name="image" id="image-input">
+            <button type="submit">Generate Playlist</button>
+        </form>
+    </div>
+    
+
+    <div id="loadingOverlay" style="display: none;">
+        <div id="spinner"></div>
+        <p>Finding your playlists... Please wait.</p>
+    </div>
+
+    <script>
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
