@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Results</title>
+    <link rel="stylesheet" href="{% static 'recommendation/result.css' %}">
+</head>
+
+<body>
+    <h1>Your Playlists</h1>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Current')">Current Search</button>
+        <button class="tablinks" onclick="openTab(event, 'Past')">Past Searches</button>
+    </div>
+
+    <!-- Current Search Results -->
+    <div id="Current" class="tabcontent">
+        <h2>Current Playlist Results</h2>
+        <div class="playlist-container">
+            {% if playlists %}
+            {% for playlist in playlists %}
+            <div class="playlist-card">
+                <strong>{{ playlist.name }}</strong> by {{ playlist.owner }}<br>
+                <a href="{{ playlist.url }}" target="_blank">Listen here</a><br>
+                <em>{{ playlist.description }}</em>
+                <iframe src="https://open.spotify.com/embed/playlist/{{ playlist.id }}" width="300" height="380"
+                    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No current playlists available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Past Search Results -->
+    <div id="Past" class="tabcontent">
+        <h2>Past Search Results</h2>
+    
+        <div class="playlist-container" id="past-playlists">
+            {% if past_playlists %}
+                {% for past_search in past_playlists %}
+                    <div class="playlist-card {% for emotion in past_search.playlist.emotions %}{{ emotion|slugify }} {% endfor %}"
+                         data-emotion="{{ past_search.playlist.emotions|join:' ' }}">
+                        <strong>{{ past_search.playlist.name }}</strong> by {{ past_search.playlist.owner }}<br>
+                        <a href="{{ past_search.playlist.url }}" target="_blank">Listen here</a><br>
+                        <em>{{ past_search.playlist.description }}</em>
+                        <div class="emotion-list">
+                            {% for emotion in past_search.playlist.emotions %}
+                                <span class="emotion-tag">{{ emotion }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No past searches available.</p>
+            {% endif %}
+        </div>
+    </div>    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementsByClassName('tablinks')[0].click();
+        });
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+
+</html>
