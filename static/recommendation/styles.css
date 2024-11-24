@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    background: linear-gradient(to right, #a2d9ff, #73bdf2);
     color: #333;
     display: flex;
     justify-content: center;
@@ -23,7 +23,7 @@ p {
 }
 
 button {
-    background-color: #e67e22;
+    background-color: #3498db;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -36,7 +36,7 @@ button {
 }
 
 button:hover {
-    background-color: #d35400;
+    background-color: #2980b9;
 }
 
 .container {
